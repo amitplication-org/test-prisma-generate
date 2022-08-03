@@ -1,9 +1,9 @@
 import { StringFilter } from "../../util/StringFilter";
 import { TestWhereUniqueInput } from "../test/TestWhereUniqueInput";
-import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { IntFilter } from "../../util/IntFilter";
 
 export type GradeWhereInput = {
   id?: StringFilter;
   test?: TestWhereUniqueInput;
-  value?: IntNullableFilter;
+  value?: IntFilter;
 };

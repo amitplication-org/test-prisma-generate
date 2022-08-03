@@ -35,7 +35,7 @@ model Grade {
   id        String   @id @default(cuid())
   test      Test?
   updatedAt DateTime @updatedAt
-  value     Int?
+  value     Int
 }
 
 model School {

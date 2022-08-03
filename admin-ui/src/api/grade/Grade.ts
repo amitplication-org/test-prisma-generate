@@ -5,5 +5,5 @@ export type Grade = {
   id: string;
   test?: Test | null;
   updatedAt: Date;
-  value: number | null;
+  value: number;
 };
