@@ -37,6 +37,6 @@ class GradeUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  value?: number | null;
+  value?: number;
 }
 export { GradeUpdateInput };

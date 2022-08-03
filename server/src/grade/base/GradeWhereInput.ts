@@ -15,7 +15,7 @@ import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { TestWhereUniqueInput } from "../../test/base/TestWhereUniqueInput";
-import { IntNullableFilter } from "../../util/IntNullableFilter";
+import { IntFilter } from "../../util/IntFilter";
 @InputType()
 class GradeWhereInput {
   @ApiProperty({
@@ -43,13 +43,13 @@ class GradeWhereInput {
 
   @ApiProperty({
     required: false,
-    type: IntNullableFilter,
+    type: IntFilter,
   })
-  @Type(() => IntNullableFilter)
+  @Type(() => IntFilter)
   @IsOptional()
-  @Field(() => IntNullableFilter, {
+  @Field(() => IntFilter, {
     nullable: true,
   })
-  value?: IntNullableFilter;
+  value?: IntFilter;
 }
 export { GradeWhereInput };
