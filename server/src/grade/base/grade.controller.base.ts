@@ -49,11 +49,9 @@ export class GradeControllerBase {
       data: {
         ...data,
 
-        test: data.test
-          ? {
-              connect: data.test,
-            }
-          : undefined,
+        test: {
+          connect: data.test,
+        },
       },
       select: {
         createdAt: true,
@@ -158,11 +156,9 @@ export class GradeControllerBase {
         data: {
           ...data,
 
-          test: data.test
-            ? {
-                connect: data.test,
-              }
-            : undefined,
+          test: {
+            connect: data.test,
+          },
         },
         select: {
           createdAt: true,

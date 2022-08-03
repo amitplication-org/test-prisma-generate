@@ -15,8 +15,8 @@ import {
   IsDate,
   IsString,
   ValidateNested,
-  IsOptional,
   IsInt,
+  IsOptional,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { Test } from "../../test/base/Test";
@@ -39,12 +39,11 @@ class Grade {
   id!: string;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => Test,
   })
   @ValidateNested()
   @Type(() => Test)
-  @IsOptional()
   test?: Test | null;
 
   @ApiProperty({
