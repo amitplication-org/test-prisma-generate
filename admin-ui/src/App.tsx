@@ -40,7 +40,7 @@ const App = (): React.ReactElement => {
   return (
     <div className="App">
       <Admin
-        title={"My app"}
+        title={"test-prisma-generate"}
         dataProvider={dataProvider}
         authProvider={jwtAuthProvider}
         theme={theme}

@@ -1,5 +1,5 @@
 {
-  "name": "@my-app/server",
+  "name": "@test-prisma-generate/server",
   "private": true,
   "scripts": {
     "start": "nest start",
