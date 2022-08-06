@@ -23,7 +23,7 @@ class GradeCreateInput {
   @ValidateNested()
   @Type(() => TestWhereUniqueInput)
   @Field(() => TestWhereUniqueInput)
-  test!: TestWhereUniqueInput | null;
+  test!: TestWhereUniqueInput | undefined;
 
   @ApiProperty({
     required: true,

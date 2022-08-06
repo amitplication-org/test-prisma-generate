@@ -1,0 +1,322 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Grade {
+  createdAt: DateTime!
+  id: String!
+  test: Test
+  updatedAt: DateTime!
+  value: Float!
+}
+
+input GradeCreateInput {
+  test: TestWhereUniqueInput!
+  value: Float!
+}
+
+input GradeOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  testId: SortOrder
+  updatedAt: SortOrder
+  value: SortOrder
+}
+
+input GradeUpdateInput {
+  test: TestWhereUniqueInput
+  value: Float
+}
+
+input GradeWhereInput {
+  id: StringFilter
+  test: TestWhereUniqueInput
+  value: IntFilter
+}
+
+input GradeWhereUniqueInput {
+  id: String!
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
+}
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  createGrade(data: GradeCreateInput!): Grade!
+  createSchool(data: SchoolCreateInput!): School!
+  createTest(data: TestCreateInput!): Test!
+  createUser(data: UserCreateInput!): User!
+  deleteGrade(where: GradeWhereUniqueInput!): Grade!
+  deleteSchool(where: SchoolWhereUniqueInput!): School!
+  deleteTest(where: TestWhereUniqueInput!): Test!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateGrade(data: GradeUpdateInput!, where: GradeWhereUniqueInput!): Grade!
+  updateSchool(data: SchoolUpdateInput!, where: SchoolWhereUniqueInput!): School!
+  updateTest(data: TestUpdateInput!, where: TestWhereUniqueInput!): Test!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Query {
+  _gradesMeta(orderBy: [GradeOrderByInput!], skip: Float, take: Float, where: GradeWhereInput): MetaQueryPayload!
+  _schoolsMeta(orderBy: [SchoolOrderByInput!], skip: Float, take: Float, where: SchoolWhereInput): MetaQueryPayload!
+  _testsMeta(orderBy: [TestOrderByInput!], skip: Float, take: Float, where: TestWhereInput): MetaQueryPayload!
+  _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
+  grade(where: GradeWhereUniqueInput!): Grade
+  grades(orderBy: [GradeOrderByInput!], skip: Float, take: Float, where: GradeWhereInput): [Grade!]!
+  school(where: SchoolWhereUniqueInput!): School
+  schools(orderBy: [SchoolOrderByInput!], skip: Float, take: Float, where: SchoolWhereInput): [School!]!
+  test(where: TestWhereUniqueInput!): Test
+  tests(orderBy: [TestOrderByInput!], skip: Float, take: Float, where: TestWhereInput): [Test!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+type School {
+  createdAt: DateTime!
+  id: String!
+  loacation: String
+  name: String
+  updatedAt: DateTime!
+  user(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+input SchoolCreateInput {
+  loacation: String
+  name: String
+  user: UserCreateNestedManyWithoutSchoolsInput
+}
+
+input SchoolCreateNestedManyWithoutUsersInput {
+  connect: [SchoolWhereUniqueInput!]
+}
+
+input SchoolListRelationFilter {
+  every: SchoolWhereInput
+  none: SchoolWhereInput
+  some: SchoolWhereInput
+}
+
+input SchoolOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  loacation: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+input SchoolUpdateInput {
+  loacation: String
+  name: String
+  user: UserUpdateManyWithoutSchoolsInput
+}
+
+input SchoolUpdateManyWithoutUsersInput {
+  connect: [SchoolWhereUniqueInput!]
+  disconnect: [SchoolWhereUniqueInput!]
+  set: [SchoolWhereUniqueInput!]
+}
+
+input SchoolWhereInput {
+  id: StringFilter
+  loacation: StringNullableFilter
+  name: StringNullableFilter
+  user: UserListRelationFilter
+}
+
+input SchoolWhereUniqueInput {
+  id: String!
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type Test {
+  createdAt: DateTime!
+  grade: Grade
+  id: String!
+  updatedAt: DateTime!
+  user: User
+}
+
+input TestCreateInput {
+  grade: GradeWhereUniqueInput
+  user: UserWhereUniqueInput!
+}
+
+input TestCreateNestedManyWithoutUsersInput {
+  connect: [TestWhereUniqueInput!]
+}
+
+input TestListRelationFilter {
+  every: TestWhereInput
+  none: TestWhereInput
+  some: TestWhereInput
+}
+
+input TestOrderByInput {
+  createdAt: SortOrder
+  gradeId: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input TestUpdateInput {
+  grade: GradeWhereUniqueInput
+  user: UserWhereUniqueInput
+}
+
+input TestUpdateManyWithoutUsersInput {
+  connect: [TestWhereUniqueInput!]
+  disconnect: [TestWhereUniqueInput!]
+  set: [TestWhereUniqueInput!]
+}
+
+input TestWhereInput {
+  grade: GradeWhereUniqueInput
+  id: StringFilter
+  user: UserWhereUniqueInput
+}
+
+input TestWhereUniqueInput {
+  id: String!
+}
+
+type User {
+  createdAt: DateTime!
+  firstName: String
+  id: String!
+  lastName: String
+  roles: [String!]!
+  schools(orderBy: [SchoolOrderByInput!], skip: Float, take: Float, where: SchoolWhereInput): [School!]!
+  tests(orderBy: [TestOrderByInput!], skip: Float, take: Float, where: TestWhereInput): [Test!]!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  firstName: String
+  lastName: String
+  password: String!
+  roles: [String!]!
+  schools: SchoolCreateNestedManyWithoutUsersInput
+  tests: TestCreateNestedManyWithoutUsersInput
+  username: String!
+}
+
+input UserCreateNestedManyWithoutSchoolsInput {
+  connect: [UserWhereUniqueInput!]
+}
+
+type UserInfo {
+  accessToken: String
+  roles: [String!]!
+  username: String!
+}
+
+input UserListRelationFilter {
+  every: UserWhereInput
+  none: UserWhereInput
+  some: UserWhereInput
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  password: String
+  roles: [String!]
+  schools: SchoolUpdateManyWithoutUsersInput
+  tests: TestUpdateManyWithoutUsersInput
+  username: String
+}
+
+input UserUpdateManyWithoutSchoolsInput {
+  connect: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+}
+
+input UserWhereInput {
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  schools: SchoolListRelationFilter
+  tests: TestListRelationFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}

@@ -26,7 +26,7 @@ class GradeUpdateInput {
   @Field(() => TestWhereUniqueInput, {
     nullable: true,
   })
-  test?: TestWhereUniqueInput | null;
+  test?: TestWhereUniqueInput | undefined;
 
   @ApiProperty({
     required: false,
