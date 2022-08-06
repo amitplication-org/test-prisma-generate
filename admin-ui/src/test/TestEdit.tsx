@@ -13,7 +13,7 @@ export const TestEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceInput source="grade.id" reference="Grade" label="Grades">
+        <ReferenceInput source="grade.id" reference="Grade" label="Grade">
           <SelectInput optionText={GradeTitle} />
         </ReferenceInput>
         <ReferenceInput source="user.id" reference="User" label="User">

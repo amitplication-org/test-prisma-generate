@@ -3,7 +3,7 @@ import { User } from "../user/User";
 
 export type Test = {
   createdAt: Date;
-  grades?: Grade;
+  grade?: Grade | null;
   id: string;
   updatedAt: Date;
   user?: User;

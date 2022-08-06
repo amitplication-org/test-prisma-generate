@@ -312,7 +312,7 @@ export class UserControllerBase {
       select: {
         createdAt: true,
 
-        grades: {
+        grade: {
           select: {
             id: true,
           },

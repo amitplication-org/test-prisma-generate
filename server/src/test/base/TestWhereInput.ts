@@ -28,7 +28,7 @@ class TestWhereInput {
   @Field(() => GradeWhereUniqueInput, {
     nullable: true,
   })
-  grades?: GradeWhereUniqueInput;
+  grade?: GradeWhereUniqueInput;
 
   @ApiProperty({
     required: false,

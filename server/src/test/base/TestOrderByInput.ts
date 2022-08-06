@@ -34,7 +34,7 @@ class TestOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  gradesId?: SortOrder;
+  gradeId?: SortOrder;
 
   @ApiProperty({
     required: false,

@@ -95,9 +95,11 @@ export class TestResolverBase {
       data: {
         ...args.data,
 
-        grades: {
-          connect: args.data.grades,
-        },
+        grade: args.data.grade
+          ? {
+              connect: args.data.grade,
+            }
+          : undefined,
 
         user: {
           connect: args.data.user,
@@ -120,9 +122,11 @@ export class TestResolverBase {
         data: {
           ...args.data,
 
-          grades: {
-            connect: args.data.grades,
-          },
+          grade: args.data.grade
+            ? {
+                connect: args.data.grade,
+              }
+            : undefined,
 
           user: {
             connect: args.data.user,
@@ -165,8 +169,8 @@ export class TestResolverBase {
     action: "read",
     possession: "any",
   })
-  async grades(@graphql.Parent() parent: Test): Promise<Grade | null> {
-    const result = await this.service.getGrades(parent.id);
+  async grade(@graphql.Parent() parent: Test): Promise<Grade | null> {
+    const result = await this.service.getGrade(parent.id);
 
     if (!result) {
       return null;
