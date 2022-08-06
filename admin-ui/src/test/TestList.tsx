@@ -22,7 +22,7 @@ export const TestList = (props: ListProps): React.ReactElement => {
     >
       <Datagrid rowClick="show">
         <DateField source="createdAt" label="Created At" />
-        <ReferenceField label="Grades" source="grade.id" reference="Grade">
+        <ReferenceField label="Grade" source="grade.id" reference="Grade">
           <TextField source={GRADE_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="ID" source="id" />

@@ -49,9 +49,11 @@ export class TestControllerBase {
       data: {
         ...data,
 
-        grades: {
-          connect: data.grades,
-        },
+        grade: data.grade
+          ? {
+              connect: data.grade,
+            }
+          : undefined,
 
         user: {
           connect: data.user,
@@ -60,7 +62,7 @@ export class TestControllerBase {
       select: {
         createdAt: true,
 
-        grades: {
+        grade: {
           select: {
             id: true,
           },
@@ -95,7 +97,7 @@ export class TestControllerBase {
       select: {
         createdAt: true,
 
-        grades: {
+        grade: {
           select: {
             id: true,
           },
@@ -131,7 +133,7 @@ export class TestControllerBase {
       select: {
         createdAt: true,
 
-        grades: {
+        grade: {
           select: {
             id: true,
           },
@@ -175,9 +177,11 @@ export class TestControllerBase {
         data: {
           ...data,
 
-          grades: {
-            connect: data.grades,
-          },
+          grade: data.grade
+            ? {
+                connect: data.grade,
+              }
+            : undefined,
 
           user: {
             connect: data.user,
@@ -186,7 +190,7 @@ export class TestControllerBase {
         select: {
           createdAt: true,
 
-          grades: {
+          grade: {
             select: {
               id: true,
             },
@@ -230,7 +234,7 @@ export class TestControllerBase {
         select: {
           createdAt: true,
 
-          grades: {
+          grade: {
             select: {
               id: true,
             },

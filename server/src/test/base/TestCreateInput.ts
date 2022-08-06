@@ -12,19 +12,22 @@ https://docs.amplication.com/docs/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { GradeWhereUniqueInput } from "../../grade/base/GradeWhereUniqueInput";
-import { ValidateNested } from "class-validator";
+import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class TestCreateInput {
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => GradeWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => GradeWhereUniqueInput)
-  @Field(() => GradeWhereUniqueInput)
-  grades!: GradeWhereUniqueInput;
+  @IsOptional()
+  @Field(() => GradeWhereUniqueInput, {
+    nullable: true,
+  })
+  grade?: GradeWhereUniqueInput | null;
 
   @ApiProperty({
     required: true,

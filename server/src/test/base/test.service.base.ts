@@ -47,12 +47,12 @@ export class TestServiceBase {
     return this.prisma.test.delete(args);
   }
 
-  async getGrades(parentId: string): Promise<Grade | null> {
+  async getGrade(parentId: string): Promise<Grade | null> {
     return this.prisma.test
       .findUnique({
         where: { id: parentId },
       })
-      .grades();
+      .grade();
   }
 
   async getUser(parentId: string): Promise<User | null> {
