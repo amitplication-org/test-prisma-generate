@@ -3,6 +3,7 @@ import { Oneval } from "../oneval/Oneval";
 import { User } from "../user/User";
 
 export type Test = {
+  aaaaaaaaaa: string | null;
   createdAt: Date;
   grade?: Grade | null;
   id: string;
