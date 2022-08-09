@@ -11,23 +11,27 @@ import { TestService } from "../test.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  aaaaaaaaaa: "exampleAaaaaaaaaa",
   createdAt: new Date(),
   id: "exampleId",
   updatedAt: new Date(),
 };
 const CREATE_RESULT = {
+  aaaaaaaaaa: "exampleAaaaaaaaaa",
   createdAt: new Date(),
   id: "exampleId",
   updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
+    aaaaaaaaaa: "exampleAaaaaaaaaa",
     createdAt: new Date(),
     id: "exampleId",
     updatedAt: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
+  aaaaaaaaaa: "exampleAaaaaaaaaa",
   createdAt: new Date(),
   id: "exampleId",
   updatedAt: new Date(),

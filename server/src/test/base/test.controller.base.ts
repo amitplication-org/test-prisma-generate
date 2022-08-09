@@ -68,6 +68,7 @@ export class TestControllerBase {
           : undefined,
       },
       select: {
+        aaaaaaaaaa: true,
         createdAt: true,
 
         grade: {
@@ -110,6 +111,7 @@ export class TestControllerBase {
     return this.service.findMany({
       ...args,
       select: {
+        aaaaaaaaaa: true,
         createdAt: true,
 
         grade: {
@@ -153,6 +155,7 @@ export class TestControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
+        aaaaaaaaaa: true,
         createdAt: true,
 
         grade: {
@@ -225,6 +228,7 @@ export class TestControllerBase {
             : undefined,
         },
         select: {
+          aaaaaaaaaa: true,
           createdAt: true,
 
           grade: {
@@ -276,6 +280,7 @@ export class TestControllerBase {
       return await this.service.delete({
         where: params,
         select: {
+          aaaaaaaaaa: true,
           createdAt: true,
 
           grade: {

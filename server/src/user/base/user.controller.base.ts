@@ -310,6 +310,7 @@ export class UserControllerBase {
     const results = await this.service.findTests(params.id, {
       ...query,
       select: {
+        aaaaaaaaaa: true,
         createdAt: true,
 
         grade: {

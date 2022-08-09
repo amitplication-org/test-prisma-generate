@@ -3,6 +3,7 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  TextInput,
   ReferenceInput,
   SelectInput,
 } from "react-admin";
@@ -14,6 +15,7 @@ export const TestEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="aaaaaaaaaa" source="aaaaaaaaaa" />
         <ReferenceInput source="grade.id" reference="Grade" label="Grade">
           <SelectInput optionText={GradeTitle} />
         </ReferenceInput>

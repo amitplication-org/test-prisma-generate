@@ -3,9 +3,9 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
+  TextField,
   DateField,
   ReferenceField,
-  TextField,
 } from "react-admin";
 import { GRADE_TITLE_FIELD } from "../grade/GradeTitle";
 import { ONEVAL_TITLE_FIELD } from "../oneval/OnevalTitle";
@@ -15,6 +15,7 @@ export const TestShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="aaaaaaaaaa" source="aaaaaaaaaa" />
         <DateField source="createdAt" label="Created At" />
         <ReferenceField label="Grade" source="grade.id" reference="Grade">
           <TextField source={GRADE_TITLE_FIELD} />
