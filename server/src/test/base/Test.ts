@@ -51,11 +51,12 @@ class Test {
   updatedAt!: Date;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => User,
   })
   @ValidateNested()
   @Type(() => User)
-  user?: User;
+  @IsOptional()
+  user?: User | null;
 }
 export { Test };

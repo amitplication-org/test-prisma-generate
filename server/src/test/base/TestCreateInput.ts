@@ -30,12 +30,15 @@ class TestCreateInput {
   grade?: GradeWhereUniqueInput | null;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput)
-  user!: UserWhereUniqueInput;
+  @IsOptional()
+  @Field(() => UserWhereUniqueInput, {
+    nullable: true,
+  })
+  user?: UserWhereUniqueInput | null;
 }
 export { TestCreateInput };

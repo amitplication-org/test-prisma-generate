@@ -6,5 +6,5 @@ export type Test = {
   grade?: Grade | null;
   id: string;
   updatedAt: Date;
-  user?: User;
+  user?: User | null;
 };

@@ -16,7 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 import { SchoolListRelationFilter } from "../../school/base/SchoolListRelationFilter";
-import { TestListRelationFilter } from "../../test/base/TestListRelationFilter";
+import { TestWhereUniqueInput } from "../../test/base/TestWhereUniqueInput";
 @InputType()
 class UserWhereInput {
   @ApiProperty({
@@ -66,15 +66,15 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => TestListRelationFilter,
+    type: () => TestWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => TestListRelationFilter)
+  @Type(() => TestWhereUniqueInput)
   @IsOptional()
-  @Field(() => TestListRelationFilter, {
+  @Field(() => TestWhereUniqueInput, {
     nullable: true,
   })
-  tests?: TestListRelationFilter;
+  tests?: TestWhereUniqueInput;
 
   @ApiProperty({
     required: false,

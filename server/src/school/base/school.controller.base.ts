@@ -205,6 +205,13 @@ export class SchoolControllerBase {
         id: true,
         lastName: true,
         roles: true,
+
+        tests: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
         username: true,
       },
