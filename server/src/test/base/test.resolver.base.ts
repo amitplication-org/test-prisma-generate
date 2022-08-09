@@ -101,9 +101,11 @@ export class TestResolverBase {
             }
           : undefined,
 
-        user: {
-          connect: args.data.user,
-        },
+        user: args.data.user
+          ? {
+              connect: args.data.user,
+            }
+          : undefined,
       },
     });
   }
@@ -128,9 +130,11 @@ export class TestResolverBase {
               }
             : undefined,
 
-          user: {
-            connect: args.data.user,
-          },
+          user: args.data.user
+            ? {
+                connect: args.data.user,
+              }
+            : undefined,
         },
       });
     } catch (error) {

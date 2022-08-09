@@ -96,9 +96,11 @@ export class GradeResolverBase {
       data: {
         ...args.data,
 
-        test: {
-          connect: args.data.test,
-        },
+        test: args.data.test
+          ? {
+              connect: args.data.test,
+            }
+          : undefined,
       },
     });
   }
@@ -119,9 +121,11 @@ export class GradeResolverBase {
         data: {
           ...args.data,
 
-          test: {
-            connect: args.data.test,
-          },
+          test: args.data.test
+            ? {
+                connect: args.data.test,
+              }
+            : undefined,
         },
       });
     } catch (error) {

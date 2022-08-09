@@ -14,7 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, ValidateNested } from "class-validator";
 import { SchoolCreateNestedManyWithoutUsersInput } from "./SchoolCreateNestedManyWithoutUsersInput";
 import { Type } from "class-transformer";
-import { TestCreateNestedManyWithoutUsersInput } from "./TestCreateNestedManyWithoutUsersInput";
+import { TestWhereUniqueInput } from "../../test/base/TestWhereUniqueInput";
 @InputType()
 class UserCreateInput {
   @ApiProperty({
@@ -71,15 +71,15 @@ class UserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => TestCreateNestedManyWithoutUsersInput,
+    type: () => TestWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => TestCreateNestedManyWithoutUsersInput)
+  @Type(() => TestWhereUniqueInput)
   @IsOptional()
-  @Field(() => TestCreateNestedManyWithoutUsersInput, {
+  @Field(() => TestWhereUniqueInput, {
     nullable: true,
   })
-  tests?: TestCreateNestedManyWithoutUsersInput;
+  tests?: TestWhereUniqueInput | null;
 
   @ApiProperty({
     required: true,

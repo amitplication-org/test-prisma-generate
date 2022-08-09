@@ -3,5 +3,5 @@ import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
 
 export type TestCreateInput = {
   grade?: GradeWhereUniqueInput | null;
-  user: UserWhereUniqueInput;
+  user?: UserWhereUniqueInput | null;
 };

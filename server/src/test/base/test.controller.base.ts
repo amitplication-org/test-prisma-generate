@@ -55,9 +55,11 @@ export class TestControllerBase {
             }
           : undefined,
 
-        user: {
-          connect: data.user,
-        },
+        user: data.user
+          ? {
+              connect: data.user,
+            }
+          : undefined,
       },
       select: {
         createdAt: true,
@@ -183,9 +185,11 @@ export class TestControllerBase {
               }
             : undefined,
 
-          user: {
-            connect: data.user,
-          },
+          user: data.user
+            ? {
+                connect: data.user,
+              }
+            : undefined,
         },
         select: {
           createdAt: true,

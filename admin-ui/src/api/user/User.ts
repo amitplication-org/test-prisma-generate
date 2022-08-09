@@ -8,7 +8,7 @@ export type User = {
   lastName: string | null;
   roles: Array<string>;
   schools?: Array<School>;
-  tests?: Array<Test>;
+  tests?: Test | null;
   updatedAt: Date;
   username: string;
 };
