@@ -11,14 +11,39 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { GradeWhereUniqueInput } from "../../grade/base/GradeWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
+import { IsOptional, ValidateNested } from "class-validator";
+import { AyalaWhereUniqueInput } from "../../ayala/base/AyalaWhereUniqueInput";
+import { GradeWhereUniqueInput } from "../../grade/base/GradeWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
 import { OnevalWhereUniqueInput } from "../../oneval/base/OnevalWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class TestWhereInput {
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  aaaaaaaaaa?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => AyalaWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => AyalaWhereUniqueInput)
+  @IsOptional()
+  @Field(() => AyalaWhereUniqueInput, {
+    nullable: true,
+  })
+  ayala?: AyalaWhereUniqueInput;
+
   @ApiProperty({
     required: false,
     type: () => GradeWhereUniqueInput,
