@@ -1,8 +1,11 @@
+import { Ayala } from "../ayala/Ayala";
 import { Grade } from "../grade/Grade";
 import { Oneval } from "../oneval/Oneval";
 import { User } from "../user/User";
 
 export type Test = {
+  aaaaaaaaaa: string | null;
+  ayala?: Ayala | null;
   createdAt: Date;
   grade?: Grade | null;
   id: string;

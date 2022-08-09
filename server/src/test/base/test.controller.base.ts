@@ -49,6 +49,12 @@ export class TestControllerBase {
       data: {
         ...data,
 
+        ayala: data.ayala
+          ? {
+              connect: data.ayala,
+            }
+          : undefined,
+
         grade: data.grade
           ? {
               connect: data.grade,
@@ -68,6 +74,14 @@ export class TestControllerBase {
           : undefined,
       },
       select: {
+        aaaaaaaaaa: true,
+
+        ayala: {
+          select: {
+            id: true,
+          },
+        },
+
         createdAt: true,
 
         grade: {
@@ -110,6 +124,14 @@ export class TestControllerBase {
     return this.service.findMany({
       ...args,
       select: {
+        aaaaaaaaaa: true,
+
+        ayala: {
+          select: {
+            id: true,
+          },
+        },
+
         createdAt: true,
 
         grade: {
@@ -153,6 +175,14 @@ export class TestControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
+        aaaaaaaaaa: true,
+
+        ayala: {
+          select: {
+            id: true,
+          },
+        },
+
         createdAt: true,
 
         grade: {
@@ -206,6 +236,12 @@ export class TestControllerBase {
         data: {
           ...data,
 
+          ayala: data.ayala
+            ? {
+                connect: data.ayala,
+              }
+            : undefined,
+
           grade: data.grade
             ? {
                 connect: data.grade,
@@ -225,6 +261,14 @@ export class TestControllerBase {
             : undefined,
         },
         select: {
+          aaaaaaaaaa: true,
+
+          ayala: {
+            select: {
+              id: true,
+            },
+          },
+
           createdAt: true,
 
           grade: {
@@ -276,6 +320,14 @@ export class TestControllerBase {
       return await this.service.delete({
         where: params,
         select: {
+          aaaaaaaaaa: true,
+
+          ayala: {
+            select: {
+              id: true,
+            },
+          },
+
           createdAt: true,
 
           grade: {
