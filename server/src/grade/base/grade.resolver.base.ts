@@ -25,6 +25,7 @@ import { DeleteGradeArgs } from "./DeleteGradeArgs";
 import { GradeFindManyArgs } from "./GradeFindManyArgs";
 import { GradeFindUniqueArgs } from "./GradeFindUniqueArgs";
 import { Grade } from "./Grade";
+import { Ayala } from "../../ayala/base/Ayala";
 import { Test } from "../../test/base/Test";
 import { GradeService } from "../grade.service";
 
@@ -96,6 +97,12 @@ export class GradeResolverBase {
       data: {
         ...args.data,
 
+        ayalas: args.data.ayalas
+          ? {
+              connect: args.data.ayalas,
+            }
+          : undefined,
+
         test: args.data.test
           ? {
               connect: args.data.test,
@@ -120,6 +127,12 @@ export class GradeResolverBase {
         ...args,
         data: {
           ...args.data,
+
+          ayalas: args.data.ayalas
+            ? {
+                connect: args.data.ayalas,
+              }
+            : undefined,
 
           test: args.data.test
             ? {
@@ -157,6 +170,22 @@ export class GradeResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Ayala, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Ayala",
+    action: "read",
+    possession: "any",
+  })
+  async ayalas(@graphql.Parent() parent: Grade): Promise<Ayala | null> {
+    const result = await this.service.getAyalas(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

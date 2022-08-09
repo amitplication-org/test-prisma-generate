@@ -25,6 +25,10 @@ import { OnevalList } from "./oneval/OnevalList";
 import { OnevalCreate } from "./oneval/OnevalCreate";
 import { OnevalEdit } from "./oneval/OnevalEdit";
 import { OnevalShow } from "./oneval/OnevalShow";
+import { AyalaList } from "./ayala/AyalaList";
+import { AyalaCreate } from "./ayala/AyalaCreate";
+import { AyalaEdit } from "./ayala/AyalaEdit";
+import { AyalaShow } from "./ayala/AyalaShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -85,6 +89,13 @@ const App = (): React.ReactElement => {
           edit={OnevalEdit}
           create={OnevalCreate}
           show={OnevalShow}
+        />
+        <Resource
+          name="Ayala"
+          list={AyalaList}
+          edit={AyalaEdit}
+          create={AyalaCreate}
+          show={AyalaShow}
         />
       </Admin>
     </div>

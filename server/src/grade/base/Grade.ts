@@ -11,17 +11,27 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+import { Ayala } from "../../ayala/base/Ayala";
 import {
-  IsDate,
-  IsString,
   ValidateNested,
   IsOptional,
+  IsDate,
+  IsString,
   IsInt,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { Test } from "../../test/base/Test";
 @ObjectType()
 class Grade {
+  @ApiProperty({
+    required: false,
+    type: () => Ayala,
+  })
+  @ValidateNested()
+  @Type(() => Ayala)
+  @IsOptional()
+  ayalas?: Ayala | null;
+
   @ApiProperty({
     required: true,
   })

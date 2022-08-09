@@ -25,6 +25,7 @@ import { DeleteTestArgs } from "./DeleteTestArgs";
 import { TestFindManyArgs } from "./TestFindManyArgs";
 import { TestFindUniqueArgs } from "./TestFindUniqueArgs";
 import { Test } from "./Test";
+import { Ayala } from "../../ayala/base/Ayala";
 import { Grade } from "../../grade/base/Grade";
 import { Oneval } from "../../oneval/base/Oneval";
 import { User } from "../../user/base/User";
@@ -96,6 +97,12 @@ export class TestResolverBase {
       data: {
         ...args.data,
 
+        ayala: args.data.ayala
+          ? {
+              connect: args.data.ayala,
+            }
+          : undefined,
+
         grade: args.data.grade
           ? {
               connect: args.data.grade,
@@ -130,6 +137,12 @@ export class TestResolverBase {
         ...args,
         data: {
           ...args.data,
+
+          ayala: args.data.ayala
+            ? {
+                connect: args.data.ayala,
+              }
+            : undefined,
 
           grade: args.data.grade
             ? {
@@ -177,6 +190,22 @@ export class TestResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Ayala, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Ayala",
+    action: "read",
+    possession: "any",
+  })
+  async ayala(@graphql.Parent() parent: Test): Promise<Ayala | null> {
+    const result = await this.service.getAyala(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

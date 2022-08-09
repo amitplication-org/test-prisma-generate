@@ -25,6 +25,15 @@ class GradeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  ayalasId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   createdAt?: SortOrder;
 
   @ApiProperty({

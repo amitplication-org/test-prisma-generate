@@ -11,11 +11,24 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { TestWhereUniqueInput } from "../../test/base/TestWhereUniqueInput";
+import { AyalaWhereUniqueInput } from "../../ayala/base/AyalaWhereUniqueInput";
 import { ValidateNested, IsOptional, IsInt } from "class-validator";
 import { Type } from "class-transformer";
+import { TestWhereUniqueInput } from "../../test/base/TestWhereUniqueInput";
 @InputType()
 class GradeCreateInput {
+  @ApiProperty({
+    required: false,
+    type: () => AyalaWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => AyalaWhereUniqueInput)
+  @IsOptional()
+  @Field(() => AyalaWhereUniqueInput, {
+    nullable: true,
+  })
+  ayalas?: AyalaWhereUniqueInput | null;
+
   @ApiProperty({
     required: false,
     type: () => TestWhereUniqueInput,
