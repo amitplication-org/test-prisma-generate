@@ -49,6 +49,12 @@ export class GradeControllerBase {
       data: {
         ...data,
 
+        ayalas: data.ayalas
+          ? {
+              connect: data.ayalas,
+            }
+          : undefined,
+
         test: data.test
           ? {
               connect: data.test,
@@ -56,6 +62,12 @@ export class GradeControllerBase {
           : undefined,
       },
       select: {
+        ayalas: {
+          select: {
+            id: true,
+          },
+        },
+
         createdAt: true,
         id: true,
 
@@ -86,6 +98,12 @@ export class GradeControllerBase {
     return this.service.findMany({
       ...args,
       select: {
+        ayalas: {
+          select: {
+            id: true,
+          },
+        },
+
         createdAt: true,
         id: true,
 
@@ -117,6 +135,12 @@ export class GradeControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
+        ayalas: {
+          select: {
+            id: true,
+          },
+        },
+
         createdAt: true,
         id: true,
 
@@ -158,6 +182,12 @@ export class GradeControllerBase {
         data: {
           ...data,
 
+          ayalas: data.ayalas
+            ? {
+                connect: data.ayalas,
+              }
+            : undefined,
+
           test: data.test
             ? {
                 connect: data.test,
@@ -165,6 +195,12 @@ export class GradeControllerBase {
             : undefined,
         },
         select: {
+          ayalas: {
+            select: {
+              id: true,
+            },
+          },
+
           createdAt: true,
           id: true,
 
@@ -204,6 +240,12 @@ export class GradeControllerBase {
       return await this.service.delete({
         where: params,
         select: {
+          ayalas: {
+            select: {
+              id: true,
+            },
+          },
+
           createdAt: true,
           id: true,
 

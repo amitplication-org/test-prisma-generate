@@ -3,16 +3,20 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  DateField,
-  TextField,
   ReferenceField,
+  TextField,
+  DateField,
 } from "react-admin";
+import { AYALA_TITLE_FIELD } from "../ayala/AyalaTitle";
 import { TEST_TITLE_FIELD } from "../test/TestTitle";
 
 export const GradeShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <ReferenceField label="Ayalas" source="ayala.id" reference="Ayala">
+          <TextField source={AYALA_TITLE_FIELD} />
+        </ReferenceField>
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <ReferenceField label="Test" source="test.id" reference="Test">
