@@ -83,11 +83,14 @@ export class UserServiceBase {
       .schools(args);
   }
 
-  async getTests(parentId: string): Promise<Test | null> {
+  async findTests(
+    parentId: string,
+    args: Prisma.TestFindManyArgs
+  ): Promise<Test[]> {
     return this.prisma.user
       .findUnique({
         where: { id: parentId },
       })
-      .tests();
+      .tests(args);
   }
 }

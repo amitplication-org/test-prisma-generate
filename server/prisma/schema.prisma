@@ -15,8 +15,7 @@ model User {
   password  String
   roles     String[]
   schools   School[]
-  tests     Test?    @relation(fields: [testsId], references: [id])
-  testsId   String?  @unique
+  tests     Test[]
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
@@ -26,8 +25,10 @@ model Test {
   grade     Grade?   @relation(fields: [gradeId], references: [id])
   gradeId   String?  @unique
   id        String   @id @default(cuid())
+  oneval    Oneval?
   updatedAt DateTime @updatedAt
-  user      User?
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
 }
 
 model Grade {
@@ -45,4 +46,13 @@ model School {
   name      String?
   updatedAt DateTime @updatedAt
   user      User[]
+}
+
+model Oneval {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  test      Test?    @relation(fields: [testId], references: [id])
+  testId    String?  @unique
+  updatedAt DateTime @updatedAt
+  value     String?
 }

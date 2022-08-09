@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { Grade } from "../../grade/base/Grade";
+import { Oneval } from "../../oneval/base/Oneval";
 import { User } from "../../user/base/User";
 @ObjectType()
 class Test {
@@ -41,6 +42,15 @@ class Test {
   @IsString()
   @Field(() => String)
   id!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => Oneval,
+  })
+  @ValidateNested()
+  @Type(() => Oneval)
+  @IsOptional()
+  oneval?: Oneval | null;
 
   @ApiProperty({
     required: true,

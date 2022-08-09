@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { GradeWhereUniqueInput } from "../../grade/base/GradeWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { OnevalWhereUniqueInput } from "../../oneval/base/OnevalWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class TestUpdateInput {
@@ -28,6 +29,18 @@ class TestUpdateInput {
     nullable: true,
   })
   grade?: GradeWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => OnevalWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => OnevalWhereUniqueInput)
+  @IsOptional()
+  @Field(() => OnevalWhereUniqueInput, {
+    nullable: true,
+  })
+  oneval?: OnevalWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,

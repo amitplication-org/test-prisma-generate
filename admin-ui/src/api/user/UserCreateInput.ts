@@ -1,5 +1,5 @@
 import { SchoolCreateNestedManyWithoutUsersInput } from "./SchoolCreateNestedManyWithoutUsersInput";
-import { TestWhereUniqueInput } from "../test/TestWhereUniqueInput";
+import { TestCreateNestedManyWithoutUsersInput } from "./TestCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
   firstName?: string | null;
@@ -7,6 +7,6 @@ export type UserCreateInput = {
   password: string;
   roles: Array<string>;
   schools?: SchoolCreateNestedManyWithoutUsersInput;
-  tests?: TestWhereUniqueInput | null;
+  tests?: TestCreateNestedManyWithoutUsersInput;
   username: string;
 };
