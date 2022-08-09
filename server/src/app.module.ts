@@ -5,6 +5,7 @@ import { UserModule } from "./user/user.module";
 import { TestModule } from "./test/test.module";
 import { GradeModule } from "./grade/grade.module";
 import { SchoolModule } from "./school/school.module";
+import { OnevalModule } from "./oneval/oneval.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { HealthModule } from "./health/health.module";
@@ -21,6 +22,7 @@ import { GraphQLModule } from "@nestjs/graphql";
     TestModule,
     GradeModule,
     SchoolModule,
+    OnevalModule,
     ACLModule,
     AuthModule,
     HealthModule,

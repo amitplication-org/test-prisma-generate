@@ -27,6 +27,7 @@ import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
 import { SchoolFindManyArgs } from "../../school/base/SchoolFindManyArgs";
 import { School } from "../../school/base/School";
+import { TestFindManyArgs } from "../../test/base/TestFindManyArgs";
 import { Test } from "../../test/base/Test";
 import { UserService } from "../user.service";
 
@@ -93,15 +94,7 @@ export class UserResolverBase {
   async createUser(@graphql.Args() args: CreateUserArgs): Promise<User> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        tests: args.data.tests
-          ? {
-              connect: args.data.tests,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -116,15 +109,7 @@ export class UserResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          tests: args.data.tests
-            ? {
-                connect: args.data.tests,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -176,18 +161,22 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Test, { nullable: true })
+  @graphql.ResolveField(() => [Test])
   @nestAccessControl.UseRoles({
     resource: "Test",
     action: "read",
     possession: "any",
   })
-  async tests(@graphql.Parent() parent: User): Promise<Test | null> {
-    const result = await this.service.getTests(parent.id);
+  async tests(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: TestFindManyArgs
+  ): Promise<Test[]> {
+    const results = await this.service.findTests(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }

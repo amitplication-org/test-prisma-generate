@@ -55,6 +55,12 @@ export class TestControllerBase {
             }
           : undefined,
 
+        oneval: data.oneval
+          ? {
+              connect: data.oneval,
+            }
+          : undefined,
+
         user: data.user
           ? {
               connect: data.user,
@@ -71,6 +77,13 @@ export class TestControllerBase {
         },
 
         id: true,
+
+        oneval: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
 
         user: {
@@ -106,6 +119,13 @@ export class TestControllerBase {
         },
 
         id: true,
+
+        oneval: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
 
         user: {
@@ -142,6 +162,13 @@ export class TestControllerBase {
         },
 
         id: true,
+
+        oneval: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
 
         user: {
@@ -185,6 +212,12 @@ export class TestControllerBase {
               }
             : undefined,
 
+          oneval: data.oneval
+            ? {
+                connect: data.oneval,
+              }
+            : undefined,
+
           user: data.user
             ? {
                 connect: data.user,
@@ -201,6 +234,13 @@ export class TestControllerBase {
           },
 
           id: true,
+
+          oneval: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
 
           user: {
@@ -245,6 +285,13 @@ export class TestControllerBase {
           },
 
           id: true,
+
+          oneval: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
 
           user: {

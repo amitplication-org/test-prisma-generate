@@ -21,6 +21,10 @@ import { SchoolList } from "./school/SchoolList";
 import { SchoolCreate } from "./school/SchoolCreate";
 import { SchoolEdit } from "./school/SchoolEdit";
 import { SchoolShow } from "./school/SchoolShow";
+import { OnevalList } from "./oneval/OnevalList";
+import { OnevalCreate } from "./oneval/OnevalCreate";
+import { OnevalEdit } from "./oneval/OnevalEdit";
+import { OnevalShow } from "./oneval/OnevalShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -74,6 +78,13 @@ const App = (): React.ReactElement => {
           edit={SchoolEdit}
           create={SchoolCreate}
           show={SchoolShow}
+        />
+        <Resource
+          name="Oneval"
+          list={OnevalList}
+          edit={OnevalEdit}
+          create={OnevalCreate}
+          show={OnevalShow}
         />
       </Admin>
     </div>

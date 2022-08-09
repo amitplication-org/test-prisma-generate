@@ -15,6 +15,7 @@ import { GradeWhereUniqueInput } from "../../grade/base/GradeWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { StringFilter } from "../../util/StringFilter";
+import { OnevalWhereUniqueInput } from "../../oneval/base/OnevalWhereUniqueInput";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 @InputType()
 class TestWhereInput {
@@ -40,6 +41,18 @@ class TestWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => OnevalWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => OnevalWhereUniqueInput)
+  @IsOptional()
+  @Field(() => OnevalWhereUniqueInput, {
+    nullable: true,
+  })
+  oneval?: OnevalWhereUniqueInput;
 
   @ApiProperty({
     required: false,

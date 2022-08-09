@@ -30,6 +30,9 @@ import { User } from "./User";
 import { SchoolFindManyArgs } from "../../school/base/SchoolFindManyArgs";
 import { School } from "../../school/base/School";
 import { SchoolWhereUniqueInput } from "../../school/base/SchoolWhereUniqueInput";
+import { TestFindManyArgs } from "../../test/base/TestFindManyArgs";
+import { Test } from "../../test/base/Test";
+import { TestWhereUniqueInput } from "../../test/base/TestWhereUniqueInput";
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class UserControllerBase {
@@ -49,28 +52,13 @@ export class UserControllerBase {
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(@common.Body() data: UserCreateInput): Promise<User> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        tests: data.tests
-          ? {
-              connect: data.tests,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         createdAt: true,
         firstName: true,
         id: true,
         lastName: true,
         roles: true,
-
-        tests: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
         username: true,
       },
@@ -97,13 +85,6 @@ export class UserControllerBase {
         id: true,
         lastName: true,
         roles: true,
-
-        tests: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
         username: true,
       },
@@ -131,13 +112,6 @@ export class UserControllerBase {
         id: true,
         lastName: true,
         roles: true,
-
-        tests: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
         username: true,
       },
@@ -167,28 +141,13 @@ export class UserControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          tests: data.tests
-            ? {
-                connect: data.tests,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           createdAt: true,
           firstName: true,
           id: true,
           lastName: true,
           roles: true,
-
-          tests: {
-            select: {
-              id: true,
-            },
-          },
-
           updatedAt: true,
           username: true,
         },
@@ -224,13 +183,6 @@ export class UserControllerBase {
           id: true,
           lastName: true,
           roles: true,
-
-          tests: {
-            select: {
-              id: true,
-            },
-          },
-
           updatedAt: true,
           username: true,
         },
@@ -332,6 +284,121 @@ export class UserControllerBase {
   ): Promise<void> {
     const data = {
       schools: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @nestAccessControl.UseRoles({
+    resource: "Test",
+    action: "read",
+    possession: "any",
+  })
+  @common.Get("/:id/tests")
+  @ApiNestedQuery(TestFindManyArgs)
+  async findManyTests(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<Test[]> {
+    const query = plainToClass(TestFindManyArgs, request.query);
+    const results = await this.service.findTests(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+
+        grade: {
+          select: {
+            id: true,
+          },
+        },
+
+        id: true,
+
+        oneval: {
+          select: {
+            id: true,
+          },
+        },
+
+        updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  @common.Post("/:id/tests")
+  async connectTests(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: TestWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tests: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  @common.Patch("/:id/tests")
+  async updateTests(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: TestWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tests: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  @common.Delete("/:id/tests")
+  async disconnectTests(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: TestWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      tests: {
         disconnect: body,
       },
     };

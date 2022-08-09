@@ -26,6 +26,7 @@ import { TestFindManyArgs } from "./TestFindManyArgs";
 import { TestFindUniqueArgs } from "./TestFindUniqueArgs";
 import { Test } from "./Test";
 import { Grade } from "../../grade/base/Grade";
+import { Oneval } from "../../oneval/base/Oneval";
 import { User } from "../../user/base/User";
 import { TestService } from "../test.service";
 
@@ -101,6 +102,12 @@ export class TestResolverBase {
             }
           : undefined,
 
+        oneval: args.data.oneval
+          ? {
+              connect: args.data.oneval,
+            }
+          : undefined,
+
         user: args.data.user
           ? {
               connect: args.data.user,
@@ -127,6 +134,12 @@ export class TestResolverBase {
           grade: args.data.grade
             ? {
                 connect: args.data.grade,
+              }
+            : undefined,
+
+          oneval: args.data.oneval
+            ? {
+                connect: args.data.oneval,
               }
             : undefined,
 
@@ -175,6 +188,22 @@ export class TestResolverBase {
   })
   async grade(@graphql.Parent() parent: Test): Promise<Grade | null> {
     const result = await this.service.getGrade(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Oneval, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Oneval",
+    action: "read",
+    possession: "any",
+  })
+  async oneval(@graphql.Parent() parent: Test): Promise<Oneval | null> {
+    const result = await this.service.getOneval(parent.id);
 
     if (!result) {
       return null;

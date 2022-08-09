@@ -1,5 +1,5 @@
 import { SchoolUpdateManyWithoutUsersInput } from "./SchoolUpdateManyWithoutUsersInput";
-import { TestWhereUniqueInput } from "../test/TestWhereUniqueInput";
+import { TestUpdateManyWithoutUsersInput } from "./TestUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
   firstName?: string | null;
@@ -7,6 +7,6 @@ export type UserUpdateInput = {
   password?: string;
   roles?: Array<string>;
   schools?: SchoolUpdateManyWithoutUsersInput;
-  tests?: TestWhereUniqueInput | null;
+  tests?: TestUpdateManyWithoutUsersInput;
   username?: string;
 };
