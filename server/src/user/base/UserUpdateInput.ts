@@ -11,10 +11,7 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { SchoolUpdateManyWithoutUsersInput } from "./SchoolUpdateManyWithoutUsersInput";
-import { Type } from "class-transformer";
-import { TestUpdateManyWithoutUsersInput } from "./TestUpdateManyWithoutUsersInput";
+import { IsString, IsOptional } from "class-validator";
 @InputType()
 class UserUpdateInput {
   @ApiProperty({
@@ -48,6 +45,17 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  username?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   password?: string;
 
   @ApiProperty({
@@ -62,40 +70,5 @@ class UserUpdateInput {
     nullable: true,
   })
   roles?: Array<string>;
-
-  @ApiProperty({
-    required: false,
-    type: () => SchoolUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => SchoolUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => SchoolUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  schools?: SchoolUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => TestUpdateManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => TestUpdateManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => TestUpdateManyWithoutUsersInput, {
-    nullable: true,
-  })
-  tests?: TestUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  username?: string;
 }
 export { UserUpdateInput };

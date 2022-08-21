@@ -25,10 +25,6 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
-import { SchoolFindManyArgs } from "../../school/base/SchoolFindManyArgs";
-import { School } from "../../school/base/School";
-import { TestFindManyArgs } from "../../test/base/TestFindManyArgs";
-import { Test } from "../../test/base/Test";
 import { UserService } from "../user.service";
 
 @graphql.Resolver(() => User)
@@ -138,45 +134,5 @@ export class UserResolverBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [School])
-  @nestAccessControl.UseRoles({
-    resource: "School",
-    action: "read",
-    possession: "any",
-  })
-  async schools(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: SchoolFindManyArgs
-  ): Promise<School[]> {
-    const results = await this.service.findSchools(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Test])
-  @nestAccessControl.UseRoles({
-    resource: "Test",
-    action: "read",
-    possession: "any",
-  })
-  async tests(
-    @graphql.Parent() parent: User,
-    @graphql.Args() args: TestFindManyArgs
-  ): Promise<Test[]> {
-    const results = await this.service.findTests(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
   }
 }
