@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import {
   Edit,
   SimpleForm,
@@ -7,11 +6,7 @@ import {
   TextInput,
   PasswordInput,
   SelectArrayInput,
-  ReferenceArrayInput,
 } from "react-admin";
-
-import { SchoolTitle } from "../school/SchoolTitle";
-import { TestTitle } from "../test/TestTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserEdit = (props: EditProps): React.ReactElement => {
@@ -20,6 +15,7 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
       <SimpleForm>
         <TextInput label="First Name" source="firstName" />
         <TextInput label="Last Name" source="lastName" />
+        <TextInput label="Username" source="username" />
         <PasswordInput label="Password" source="password" />
         <SelectArrayInput
           source="roles"
@@ -27,23 +23,6 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
-        <ReferenceArrayInput
-          source="schools"
-          reference="School"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={SchoolTitle} />
-        </ReferenceArrayInput>
-        <ReferenceArrayInput
-          source="tests"
-          reference="Test"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={TestTitle} />
-        </ReferenceArrayInput>
-        <TextInput label="Username" source="username" />
       </SimpleForm>
     </Edit>
   );

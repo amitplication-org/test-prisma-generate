@@ -8,51 +8,12 @@ generator client {
 }
 
 model User {
-  createdAt DateTime @default(now())
-  firstName String?
   id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  firstName String?
   lastName  String?
+  username  String   @unique
   password  String
   roles     String[]
-  schools   School[]
-  tests     Test[]
-  updatedAt DateTime @updatedAt
-  username  String   @unique
-}
-
-model Test {
-  createdAt DateTime @default(now())
-  grade     Grade?   @relation(fields: [gradeId], references: [id])
-  gradeId   String?  @unique
-  id        String   @id @default(cuid())
-  oneval    Oneval?
-  updatedAt DateTime @updatedAt
-  user      User?    @relation(fields: [userId], references: [id])
-  userId    String?
-}
-
-model Grade {
-  createdAt DateTime @default(now())
-  id        String   @id @default(cuid())
-  test      Test?
-  updatedAt DateTime @updatedAt
-  value     Int
-}
-
-model School {
-  createdAt DateTime @default(now())
-  id        String   @id @default(cuid())
-  loacation String?
-  name      String?
-  updatedAt DateTime @updatedAt
-  user      User[]
-}
-
-model Oneval {
-  createdAt DateTime @default(now())
-  id        String   @id @default(cuid())
-  test      Test?    @relation(fields: [testId], references: [id])
-  testId    String?  @unique
-  updatedAt DateTime @updatedAt
-  value     String?
 }

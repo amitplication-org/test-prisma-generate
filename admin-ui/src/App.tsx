@@ -9,22 +9,6 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { TestList } from "./test/TestList";
-import { TestCreate } from "./test/TestCreate";
-import { TestEdit } from "./test/TestEdit";
-import { TestShow } from "./test/TestShow";
-import { GradeList } from "./grade/GradeList";
-import { GradeCreate } from "./grade/GradeCreate";
-import { GradeEdit } from "./grade/GradeEdit";
-import { GradeShow } from "./grade/GradeShow";
-import { SchoolList } from "./school/SchoolList";
-import { SchoolCreate } from "./school/SchoolCreate";
-import { SchoolEdit } from "./school/SchoolEdit";
-import { SchoolShow } from "./school/SchoolShow";
-import { OnevalList } from "./oneval/OnevalList";
-import { OnevalCreate } from "./oneval/OnevalCreate";
-import { OnevalEdit } from "./oneval/OnevalEdit";
-import { OnevalShow } from "./oneval/OnevalShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -44,7 +28,7 @@ const App = (): React.ReactElement => {
   return (
     <div className="App">
       <Admin
-        title={"test-prisma-generate"}
+        title={"My service"}
         dataProvider={dataProvider}
         authProvider={jwtAuthProvider}
         theme={theme}
@@ -57,34 +41,6 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
-        />
-        <Resource
-          name="Test"
-          list={TestList}
-          edit={TestEdit}
-          create={TestCreate}
-          show={TestShow}
-        />
-        <Resource
-          name="Grade"
-          list={GradeList}
-          edit={GradeEdit}
-          create={GradeCreate}
-          show={GradeShow}
-        />
-        <Resource
-          name="School"
-          list={SchoolList}
-          edit={SchoolEdit}
-          create={SchoolCreate}
-          show={SchoolShow}
-        />
-        <Resource
-          name="Oneval"
-          list={OnevalList}
-          edit={OnevalEdit}
-          create={OnevalCreate}
-          show={OnevalShow}
         />
       </Admin>
     </div>

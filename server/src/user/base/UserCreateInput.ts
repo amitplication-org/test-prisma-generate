@@ -11,10 +11,7 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { SchoolCreateNestedManyWithoutUsersInput } from "./SchoolCreateNestedManyWithoutUsersInput";
-import { Type } from "class-transformer";
-import { TestCreateNestedManyWithoutUsersInput } from "./TestCreateNestedManyWithoutUsersInput";
+import { IsString, IsOptional } from "class-validator";
 @InputType()
 class UserCreateInput {
   @ApiProperty({
@@ -45,6 +42,14 @@ class UserCreateInput {
   })
   @IsString()
   @Field(() => String)
+  username!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   password!: string;
 
   @ApiProperty({
@@ -56,37 +61,5 @@ class UserCreateInput {
   })
   @Field(() => [String])
   roles!: Array<string>;
-
-  @ApiProperty({
-    required: false,
-    type: () => SchoolCreateNestedManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => SchoolCreateNestedManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => SchoolCreateNestedManyWithoutUsersInput, {
-    nullable: true,
-  })
-  schools?: SchoolCreateNestedManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => TestCreateNestedManyWithoutUsersInput,
-  })
-  @ValidateNested()
-  @Type(() => TestCreateNestedManyWithoutUsersInput)
-  @IsOptional()
-  @Field(() => TestCreateNestedManyWithoutUsersInput, {
-    nullable: true,
-  })
-  tests?: TestCreateNestedManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  username!: string;
 }
 export { UserCreateInput };
